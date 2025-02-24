@@ -16,7 +16,7 @@ create table subjects(
 	subject_one varchar(30) not null,
 	subject_two varchar(30) not null,
 	subject_three varchar(30) not null,
-	student_rollNo  int references students(student_rollNo)
+	student_rollNo int unique references students(student_rollNo)
 );
 insert into subjects(subject_one,subject_two,subject_three,student_rollNo) values('Maths','Physics','Chemistry',5);
 insert into subjects(subject_one,subject_two,subject_three,student_rollNo) values('Maths','Computer Science','Chemistry',3);
@@ -28,10 +28,10 @@ select * from subjects;
 
 --marks table
 create table marks(
-	mark_one int not null,
-	mark_two int not null,
-	mark_three int not null,
-	student_rollNo int references students(student_rollNo)
+	mark_one int check(0<mark_one<101) not null,
+	mark_two int check(0<mark_two<101) not null,
+	mark_three int check(0<mark_three<101) not null,
+	student_rollNo int unique references students(student_rollNo)
 );
 insert into marks(mark_one,mark_two,mark_three,student_rollNo) values(82,85,87,4);
 insert into marks(mark_one,mark_two,mark_three,student_rollNo) values(75,80,70,5);
